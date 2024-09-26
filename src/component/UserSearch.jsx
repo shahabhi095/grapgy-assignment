@@ -62,6 +62,9 @@ function UserSearch() {
 
   useEffect(() => {
     searchUsers(debouncedSearchTerm, currentPage);
+    if(debouncedSearchTerm.trim() === ''){
+      setError("")
+    }
   }, [debouncedSearchTerm, currentPage]);
 
   const totalPages = Math.ceil(totalCount / usersPerPage);
