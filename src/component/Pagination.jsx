@@ -2,7 +2,7 @@
 
 // eslint-disable-next-line react/prop-types
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
- console.log(totalPages)
+//  console.log(totalPages)
   return (
     <div className="d-flex justify-content-center align-items-center my-4">
     <button
