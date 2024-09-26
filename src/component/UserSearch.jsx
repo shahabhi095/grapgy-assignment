@@ -6,6 +6,7 @@ import SearchBox from "./SearchBox";
 // import Breadcrumb from "./Breadcrumb";
 import { Loader } from "./Loader";
 import "../style/usersearch.css"
+import ErrorComponent from "./Error";
 
 function UserSearch() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -37,6 +38,9 @@ function UserSearch() {
         },
       });
       setUsers(response.data.items);
+      if(response.data.items.length === 0){
+        setError('The username you searched for does not exist.');
+      }
       setTotalCount(response.data.total_count);
     } catch (err) {
       console.log(err);
@@ -74,7 +78,7 @@ function UserSearch() {
       <p>Type a GitHub username in the search box above to get started.</p>
     </div>}
       {loading && <Loader/>}
-      {error && <p>{error}</p>}
+      {error && <ErrorComponent message={error} />}
       <UserSearchResults users={users} />
      {users?.length>0&& <Pagination
         currentPage={currentPage}

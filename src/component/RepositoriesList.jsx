@@ -5,6 +5,7 @@ import Pagination from './Pagination';
 import Breadcrumb from './Breadcrumb';
 import '../style/style.css'
 import { Loader } from './Loader';
+import ErrorComponent from './Error';
 function Repositories() {
   const { username } = useParams();
   const [repos, setRepos] = useState([]);
@@ -45,12 +46,13 @@ function Repositories() {
 
   const totalPages = Math.ceil(totalCount / reposPerPage);
   if (loading) return <><Loader/></>;
+
   return (
     <div className="container my-5">
     <Breadcrumb username={username} repoName={"Repositories"} />
   
     <h2 className="mb-4">{`${username}'s Repositories`}</h2>
-    {error && <p className="text-danger text-center">{error}</p>}
+    {error && <ErrorComponent message={error} />}
   
     <div className="row">
       {repos.map((repo) => (

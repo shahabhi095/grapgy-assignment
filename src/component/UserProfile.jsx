@@ -4,6 +4,7 @@ import axios from 'axios';
 import Breadcrumb from './Breadcrumb';
 import '../style/style.css'
 import { Loader } from './Loader';
+import ErrorComponent from './Error';
 
 function UserProfile() {
   const { username } = useParams();
@@ -28,7 +29,7 @@ function UserProfile() {
   }, [username]);
 
   if (loading) return <><Loader/></>;
-  if (error) return <p>{error}</p>;
+  if (error) return<><ErrorComponent message={error} /></>;
 
   return (
     <div className="container my-5">
